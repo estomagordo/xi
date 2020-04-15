@@ -58,13 +58,17 @@ lazio = Club('Lazio')
 roma = Club('Roma')
 bayern = Club('Bayern')
 leverkusen = Club('Leverkusen')
-momnchengladbach = Club('Mönchengladbach')
+monchengladbach = Club('Mönchengladbach')
 dortmund = Club('Dortmund')
 psg = Club('PSG')
 lyon = Club('Lyon')
 ajax = Club('Ajax')
 psv = Club('PSV')
 feyenoord = Club('Feyenoord')
+blackburn = Club('Blackburn')
+willem = Club('Willem II')
+fulham = Club('Fulham')
+rostock = Club('Hansa Rostock')
 
 st = Position('Striker')
 lm = Position('Left midfield')
@@ -76,10 +80,10 @@ rb = Position('Right back')
 gk = Position('Goalkeeper')
 
 players = [
-    Player('Ibhrahimovic', 'Sweden', ['Malmö', 'Ajax', 'Juventus', 'Inter', 'Barcelona', 'Milan', 'PSG'], ['ST']),
-    Player('Ljungberg', 'Sweden', ['Arsenal', 'Celtic', 'West Ham'], ['LM', 'CM', 'RM']),
-    Player('Andersson', 'Sweden', ['Malmö', 'Mönchengladbach', 'Blackburn', 'Bayern', 'Barcelona'], ['CB']),
-    Player('Schmeichel', 'Denmark', ['Man U'], ['GK']),
-    Player('Hyypiä', 'Finland', ['Willem', 'Liverpool', 'Leverkusen'], ['CB']),
-    Player('Ljungberg', 'Sweden', ['Arsenal'], ['LM, CM, RM']),
+    Player('Ibhrahimovic', sweden, { malmo, ajax, juventus, inter, barcelona, milan, psg }, [st]),
+    Player('Ljungberg', sweden, { arsenal, celtic, west_ham }, [lm, cm, rm]),
+    Player('Andersson', sweden, { malmo, monchengladbach, blackburn, bayern, barcelona }, [cb]),
+    Player('Schmeichel', denmark, { man_u }, [gk]),
+    Player('Hyypiä', finland, { willem, liverpool, leverkusen }, [cb]),
+    Player('Litmanen', finland, { fulham, malmo, rostock, ajax, liverpool, barcelona }, [st, cm])
 ]
