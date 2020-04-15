@@ -190,6 +190,12 @@ genk = Club('Genk')
 metz = Club('Metz')
 metrostars = Club('Metrostars')
 orange_county = Club('Orange County')
+montreal = Club('Montreal')
+guingamp = Club('Guingamp')
+phoenix = Club('Phoenix')
+galatasaray = Club('Galatasaray')
+marseille = Club('Marseille')
+le_mans = Club('Le Mans')
 
 st = Position('Striker')
 lw = Position('Left wing')
@@ -275,7 +281,8 @@ players = [
     Player('Shevchenko', ukraine, { milan, chelsea }, [st], 8),
     Player('Matthäus', germany, { metrostars, bayern, inter, monchengladbach }, [cb, cm], 9),
     Player('Klinsmann', germany, { orange_county, sampdoria, tottenham, bayern, monaco, inter, stuttgart }, [st], 8),
-    Player('Thuram', france, { barcelona, juventus, parma, monaco }, [cb, rb], 8)
+    Player('Thuram', france, { barcelona, juventus, parma, monaco }, [cb, rb], 8),
+    Player('Drogba', cote_d_ivoire, { chelsea, montreal, phoenix, galatasaray, marseille, guingamp, le_mans }, [st], 8)
 ]
 
 teams = [
