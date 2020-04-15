@@ -46,6 +46,7 @@ scotland = Nation('Scotland')
 gabon = Nation('Gabon')
 poland = Nation('Poland')
 algeria = Nation('Algeria')
+norway = Nation('Norway')
 
 malmo = Club('Malmö')
 liverpool = Club('Liverpool')
@@ -106,6 +107,11 @@ fenerbahce = Club('Fenerbahce')
 saint_etienne = Club('Saint Etienne')
 leicester = Club('Leicester')
 le_havre = Club('Le Havre')
+salzburg = Club('Salzburg')
+caen = Club('Caen')
+valencia = Club('Valencia')
+celta = Club('Celta Vigo')
+eibar = Club('Eibar')
 
 st = Position('Striker')
 lw = Position('Left wing')
@@ -158,4 +164,11 @@ players = [
     Player('Aubameyang', gabon, { saint_etienne, arsenal, dortmund, milan, monaco, lille }, [lw, st, rw]),
     Player('Lewandowski', poland, { bayern, dortmund }, [st]),
     Player('Mahrez', algeria, { leicester, man_c, le_havre }, [rw, rm, cm]),
+    Player('Courtois', belgium, { chelsea, real_madrid, atletico_madrid }, [gk]),
+    Player('Alisson', brazil, { liverpool, roma }, [gk]),
+    Player('Haaland', norway, { salzburg, dortmund }, [st]),
+    Player('Kante', france, { leicester, chelsea, caen }, [cm]),
+    Player('Vieira', france, { arsenal, man_c, inter, juventus, milan, cannes }, [cm]),
+    Player('Xavi', spain, { barcelona }, [cm]),
+    Player('David Silva', spain, { valencia, man_c, celta, eibar }, [cm, lm]),
 ]
