@@ -1,24 +1,49 @@
 class Player:
     def __init__(self, name, nationality, clubs, positions):
-        this.name = name
-        this.nationality = nationality
-        this.clubs = clubs
-        this.positions = positions
+        self.name = name
+        self.nationality = nationality
+        self.clubs = clubs
+        self.positions = positions
 
 
 class Nation:
     def __init__(self, name):
-        this.name = name
+        self.name = name
 
 
 class Club:
     def __init__(self, name):
-        this.name = name
+        self.name = name
 
 
 class Position:
     def __init__(self, name):
-        this.name = name
+        self.name = name
+
+
+class Team:
+    def __init__(self, players, positions):
+        self.players = players
+        self.positions = positions
+
+    def find_xis(self):
+        players_for_positions = list(map(
+            lambda position: [player for player in self.players if position in player.positions],
+            self.positions
+            ))        
+
+        def search(xis, n, player_names, nations, clubs):
+            if n == 11:
+                xis.append(player_names)
+                return
+
+            for player in players_for_positions[n]:
+                if player.nationality not in nations and not player.clubs & clubs:
+                    search(xis, n +1, list(player_names) + [player.name], nations | { player.nationality }, clubs | player.clubs)
+
+        xis = search([], 0, [], set(), set())
+
+        return xis
 
 
 sweden = Nation('Sweden')
@@ -172,3 +197,11 @@ players = [
     Player('Xavi', spain, { barcelona }, [cm]),
     Player('David Silva', spain, { valencia, man_c, celta, eibar }, [cm, lm]),
 ]
+
+team_433 = Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw])
+
+for xi in team_433.find_xis():
+    for player in xi:
+        print(player.name)
+
+    print()
