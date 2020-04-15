@@ -1,9 +1,10 @@
 class Player:
-    def __init__(self, name, nationality, clubs, positions):
+    def __init__(self, name, nationality, clubs, positions, quality):
         self.name = name
         self.nationality = nationality
         self.clubs = clubs
         self.positions = positions
+        self.quality = quality
 
     def __repr__(self):
         return self.name
@@ -196,78 +197,95 @@ rb = Position('Right back')
 gk = Position('Goalkeeper')
 
 players = [
-    Player('Ibhrahimovic', sweden, { malmo, ajax, juventus, inter, barcelona, milan, psg }, [st]),
-    Player('Ljungberg', sweden, { arsenal, celtic, west_ham }, [lm, cm, rm]),
-    Player('Andersson', sweden, { malmo, monchengladbach, blackburn, bayern, barcelona }, [cb]),
-    Player('Schmeichel', denmark, { man_u }, [gk]),
-    Player('Hyypiä', finland, { willem, liverpool, leverkusen }, [cb]),
-    Player('Litmanen', finland, { fulham, malmo, rostock, ajax, liverpool, barcelona }, [st, cm]),
-    Player('Michael Laudrup', denmark, { ajax, real_madrid, barcelona, juventus, lazio }, [cm]),
-    Player('Stoichkov', bulgaria, { dc, chicago, barcelona, parma }, [lw, st]),
-    Player('Hagi', romania, { barcelona, real_madrid, brescia }, [lm, cm]),
-    Player('Lahm', germany, { stuttgart, bayern }, [rb]),
-    Player('Maldini', italy, { milan }, [lb, cb]),
-    Player('Del Piero', italy, { juventus, padova }, [st, cm]),
-    Player('Baggio', italy, { milan, inter, brescia, bologna, vicenca, fiorentina, juventus }, [cm, st]),
-    Player('Gullit', netherlands, { milan, chelsea, sampdoria, psv, feyenoord }, [cm, rw]),
-    Player('van Basten', netherlands, { milan, ajax }, [st]),
-    Player('van Dijk', netherlands, { southampton, liverpool, celtic, groningen }, [cb]),
-    Player('Buffon', italy, { juventus, parma, psg }, [gk]),
-    Player('Hazard', belgium, { chelsea, lille, real_madrid }, [lw, cm, rw]),
-    Player('Neuer', germany, { bayern, schalke }, [gk]),
-    Player('Oblak', slovenia, { benfica, atletico_madrid }, [gk]),
-    Player('Henry', france, { ny, barcelona, arsenal, juventus, monaco }, [st, lw]),
-    Player('Sterling', england, { liverpool, man_c }, [lw, rw, st]),
-    Player('Ronaldo', brazil, { milan, real_madrid, inter, barcelona, psv }, [st]),
-    Player('Mané', senegal, { liverpool, southampton }, [lw, st, rw]),
-    Player('Salah', egypt, { liverpool, chelsea, roma, fiorentina }, [lw, st, rw]),
-    Player('Gerrard', england, { liverpool, la }, [cm]),
-    Player('de Bruyne', belgium, { man_c, chelsea, bremen, wolfsburg }, [cm]),
-    Player('Messi', argentina, { barcelona }, [st, rw]),
-    Player('Alexander-Arnold', england, { liverpool }, [rb]),
-    Player('Robertson', scotland, { liverpool }, [lb]),
-    Player('Varane', france, { lens, real_madrid }, [cb]),
-    Player('Zidane', france, { cannes, bordeaux, juventus, real_madrid }, [cm, lm]),
-    Player('Cristiano Ronaldo', portugal, { man_u, sporting, real_madrid, juventus }, [lw, st, rw]),
-    Player('Fabinho', brazil, { liverpool, monaco }, [cm]),
-    Player('Cafu', brazil, { milan, roma }, [rb, rm]),
-    Player('Roberto Carlos', brazil, { fenerbahce, real_madrid, inter }, [lb]),
-    Player('Aubameyang', gabon, { saint_etienne, arsenal, dortmund, milan, monaco, lille }, [lw, st, rw]),
-    Player('Lewandowski', poland, { bayern, dortmund }, [st]),
-    Player('Mahrez', algeria, { leicester, man_c, le_havre }, [rw, rm, cm]),
-    Player('Courtois', belgium, { chelsea, real_madrid, atletico_madrid }, [gk]),
-    Player('Alisson', brazil, { liverpool, roma }, [gk]),
-    Player('Haaland', norway, { salzburg, dortmund }, [st]),
-    Player('Kante', france, { leicester, chelsea, caen }, [cm]),
-    Player('Vieira', france, { arsenal, man_c, inter, juventus, milan, cannes }, [cm]),
-    Player('Xavi', spain, { barcelona }, [cm]),
-    Player('David Silva', spain, { valencia, man_c, celta, eibar }, [cm, lm]),
-    Player('Shearer', england, { newcastle, southampton, blackburn }, [st]),
-    Player('Cech', czechia, { chelsea, arsenal, rennais }, [gk]),
-    Player('Yaya', cote_d_ivoire, { man_c, barcelona, monaco, olympiacos }, [cm]),
-    Player('Son', south_korea, { tottenham, leverkusen, hamburg }, [lw, rw, st]),
-    Player('Boban', croatia, { milan, celta, bari }, [cm, lm]),
-    Player('Suker', croatia, { munich_1860, west_ham, arsenal, real_madrid, sevilla }, [st]),
-    Player('Vidic', serbia, { inter, man_u }, [cb]),
-    Player('De Rossi', italy, { roma, boca }, [cm]),
-    Player('Suarez', uruguay, { liverpool, barcelona, ajax, groningen }, [st]),
-    Player('Valderrama', colombia, { colorado, tampa, miami, montpellier, valladolid }, [cm]),
-    Player("Eto'o", cameroon, { sampdoria, everton, chelsea, inter, barcelona, real_madrid, mallorca }, [st, rw]),
-    Player('Kewell', australia, { liverpool, leeds }, [cm, lw]),
-    Player('Juninho Pernambucano', brazil, { ny, lyon }, [cm, rw]),
-    Player('Mihajlovic', serbia, { lazio, inter, roma, sampdoria }, [cb]),
-    Player('Keane', australia, { man_u, celtic, nottingham }, [cm]),
-    Player('Bale', wales, { tottenham, real_madrid, southampton }, [lw, st, rw]),
-    Player('Alaba', austria, { hoffenheim, bayern }, [cm, cb, lb]),
-    Player('Söyüncü', turkey, { leicester, freiburg }, [cb]),
-    Player('Salas', chile, { juventus, lazio, river }, [st]),
-    Player('Maradona', argentina, { napoli, boca, sevilla, barcelona }, [cm])
+    Player('Ibhrahimovic', sweden, { malmo, ajax, juventus, inter, barcelona, milan, psg }, [st], 9),
+    Player('Ljungberg', sweden, { arsenal, celtic, west_ham }, [lm, cm, rm], 6),
+    Player('Andersson', sweden, { malmo, monchengladbach, blackburn, bayern, barcelona }, [cb], 6),
+    Player('Schmeichel', denmark, { man_u }, [gk], 9),
+    Player('Hyypiä', finland, { willem, liverpool, leverkusen }, [cb], 7),
+    Player('Litmanen', finland, { fulham, malmo, rostock, ajax, liverpool, barcelona }, [st, cm], 5),
+    Player('Michael Laudrup', denmark, { ajax, real_madrid, barcelona, juventus, lazio }, [cm], 8),
+    Player('Stoichkov', bulgaria, { dc, chicago, barcelona, parma }, [lw, st], 8),
+    Player('Hagi', romania, { barcelona, real_madrid, brescia }, [lm, cm], 8),
+    Player('Lahm', germany, { stuttgart, bayern }, [rb], 8),
+    Player('Maldini', italy, { milan }, [lb, cb], 9),
+    Player('Del Piero', italy, { juventus, padova }, [st, cm], 7),
+    Player('Baggio', italy, { milan, inter, brescia, bologna, vicenca, fiorentina, juventus }, [cm, st], 8),
+    Player('Gullit', netherlands, { milan, chelsea, sampdoria, psv, feyenoord }, [cm, rw], 8),
+    Player('van Basten', netherlands, { milan, ajax }, [st], 9),
+    Player('van Dijk', netherlands, { southampton, liverpool, celtic, groningen }, [cb], 9),
+    Player('Buffon', italy, { juventus, parma, psg }, [gk], 9),
+    Player('Hazard', belgium, { chelsea, lille, real_madrid }, [lw, cm, rw], 8),
+    Player('Neuer', germany, { bayern, schalke }, [gk], 9),
+    Player('Oblak', slovenia, { benfica, atletico_madrid }, [gk], 8),
+    Player('Henry', france, { ny, barcelona, arsenal, juventus, monaco }, [st, lw], 9),
+    Player('Sterling', england, { liverpool, man_c }, [lw, rw, st], 8),
+    Player('Ronaldo', brazil, { milan, real_madrid, inter, barcelona, psv }, [st], 9),
+    Player('Mané', senegal, { liverpool, southampton }, [lw, st, rw], 8),
+    Player('Salah', egypt, { liverpool, chelsea, roma, fiorentina }, [lw, st, rw], 8),
+    Player('Gerrard', england, { liverpool, la }, [cm], 9),
+    Player('de Bruyne', belgium, { man_c, chelsea, bremen, wolfsburg }, [cm], 9),
+    Player('Messi', argentina, { barcelona }, [st, rw], 10),
+    Player('Alexander-Arnold', england, { liverpool }, [rb], 8),
+    Player('Robertson', scotland, { liverpool }, [lb], 7),
+    Player('Varane', france, { lens, real_madrid }, [cb], 8),
+    Player('Zidane', france, { cannes, bordeaux, juventus, real_madrid }, [cm, lm], 10),
+    Player('Cristiano Ronaldo', portugal, { man_u, sporting, real_madrid, juventus }, [lw, st, rw], 10),
+    Player('Fabinho', brazil, { liverpool, monaco }, [cm], 7),
+    Player('Cafu', brazil, { milan, roma }, [rb, rm], 9),
+    Player('Roberto Carlos', brazil, { fenerbahce, real_madrid, inter }, [lb], 9),
+    Player('Aubameyang', gabon, { saint_etienne, arsenal, dortmund, milan, monaco, lille }, [lw, st, rw], 7),
+    Player('Lewandowski', poland, { bayern, dortmund }, [st], 8),
+    Player('Mahrez', algeria, { leicester, man_c, le_havre }, [rw, rm, cm], 7),
+    Player('Courtois', belgium, { chelsea, real_madrid, atletico_madrid }, [gk], 8),
+    Player('Alisson', brazil, { liverpool, roma }, [gk], 8),
+    Player('Haaland', norway, { salzburg, dortmund }, [st], 7),
+    Player('Kanté', france, { leicester, chelsea, caen }, [cm], 8),
+    Player('Vieira', france, { arsenal, man_c, inter, juventus, milan, cannes }, [cm], 8),
+    Player('Xavi', spain, { barcelona }, [cm], 9),
+    Player('David Silva', spain, { valencia, man_c, celta, eibar }, [cm, lm], 8),
+    Player('Shearer', england, { newcastle, southampton, blackburn }, [st], 8),
+    Player('Cech', czechia, { chelsea, arsenal, rennais }, [gk], 8),
+    Player('Yaya', cote_d_ivoire, { man_c, barcelona, monaco, olympiacos }, [cm], 7),
+    Player('Son', south_korea, { tottenham, leverkusen, hamburg }, [lw, rw, st], 6),
+    Player('Boban', croatia, { milan, celta, bari }, [cm, lm], 7),
+    Player('Suker', croatia, { munich_1860, west_ham, arsenal, real_madrid, sevilla }, [st], 7),
+    Player('Vidic', serbia, { inter, man_u }, [cb], 8),
+    Player('De Rossi', italy, { roma, boca }, [cm], 7),
+    Player('Suarez', uruguay, { liverpool, barcelona, ajax, groningen }, [st], 8),
+    Player('Valderrama', colombia, { colorado, tampa, miami, montpellier, valladolid }, [cm], 7),
+    Player("Eto'o", cameroon, { sampdoria, everton, chelsea, inter, barcelona, real_madrid, mallorca }, [st, rw], 7),
+    Player('Kewell', australia, { liverpool, leeds }, [cm, lw], 6),
+    Player('Juninho Pernambucano', brazil, { ny, lyon }, [cm, rw], 6),
+    Player('Mihajlovic', serbia, { lazio, inter, roma, sampdoria }, [cb], 7),
+    Player('Keane', ireland, { man_u, celtic, nottingham }, [cm], 8),
+    Player('Bale', wales, { tottenham, real_madrid, southampton }, [lw, st, rw], 7),
+    Player('Alaba', austria, { hoffenheim, bayern }, [cm, cb, lb], 6),
+    Player('Söyüncü', turkey, { leicester, freiburg }, [cb], 5),
+    Player('Salas', chile, { juventus, lazio, river }, [st], 7),
+    Player('Maradona', argentina, { napoli, boca, sevilla, barcelona }, [cm], 10)
 ]
 
 team_433 = Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw])
 
-for xi in team_433.find_xis():
-    for player in xi:
-        print(player.name)
+xis = team_433.find_xis()
+xis.sort(key = lambda xi: sum(player.quality for player in xi))
 
+print('Top 3')
+print()
+for xi in xis[-3:]:
+    print(sum(player.quality for player in xi))
+    
+    for player in xi:
+        print(player)
+
+    print()
+
+print('Bottom 3')
+print()
+for xi in xis[:3]:
+    print(sum(player.quality for player in xi))
+    
+    for player in xi:
+        print(player)
+    
     print()
