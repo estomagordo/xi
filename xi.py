@@ -5,20 +5,32 @@ class Player:
         self.clubs = clubs
         self.positions = positions
 
+    def __repr__(self):
+        return self.name
+
 
 class Nation:
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self):
+        return self.name
 
 
 class Club:
     def __init__(self, name):
         self.name = name
 
+    def __repr__(self):
+        return self.name
+
 
 class Position:
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self):
+        return self.name
 
 
 class Team:
@@ -30,18 +42,20 @@ class Team:
         players_for_positions = list(map(
             lambda position: [player for player in self.players if position in player.positions],
             self.positions
-            ))        
+            ))
 
-        def search(xis, n, player_names, nations, clubs):
+        xis = []
+
+        def search(n, players, nations, clubs):
             if n == 11:
-                xis.append(player_names)
+                xis.append(players)
                 return
 
             for player in players_for_positions[n]:
                 if player.nationality not in nations and not player.clubs & clubs:
-                    search(xis, n +1, list(player_names) + [player.name], nations | { player.nationality }, clubs | player.clubs)
+                    search( n +1, list(players) + [player], nations | { player.nationality }, clubs | player.clubs)
 
-        xis = search([], 0, [], set(), set())
+        search(0, [], set(), set())
 
         return xis
 
@@ -72,6 +86,17 @@ gabon = Nation('Gabon')
 poland = Nation('Poland')
 algeria = Nation('Algeria')
 norway = Nation('Norway')
+cote_d_ivoire = Nation("Cote d'ivoire")
+south_korea = Nation('South Korea')
+uruguay = Nation('Uruguay')
+colombia = Nation('Colombia')
+cameroon = Nation("Cameroon")
+australia = Nation('Australia')
+ireland = Nation('Ireland')
+wales = Nation('Wales')
+austria = Nation('Austria')
+turkey = Nation('Turkey')
+chile = Nation('Chile')
 
 malmo = Club('Malmö')
 liverpool = Club('Liverpool')
@@ -137,6 +162,27 @@ caen = Club('Caen')
 valencia = Club('Valencia')
 celta = Club('Celta Vigo')
 eibar = Club('Eibar')
+newcastle = Club('Newcastle')
+rennais = Club('Rennais')
+olympiacos = Club('Olympiacos')
+hamburg = Club('Hamburg')
+bari = Club('Bari')
+munich_1860 = Club('1860 Munich')
+sevilla = Club('Sevilla')
+boca = Club('Boca Juniors')
+colorado = Club('Colorado')
+tampa = Club('Tampa Bay')
+miami = Club('Miami')
+valladolid = Club('Valladolid')
+montpellier = Club('Montpellier')
+mallorca = Club('Mallorca')
+everton = Club('Everton')
+leeds = Club('Leeds')
+nottingham = Club('Nottingham Forest')
+hoffenheim = Club('Hoffenheim')
+freiburg = Club('Freiburg')
+river = Club('River Plate')
+napoli = Club('Napoli')
 
 st = Position('Striker')
 lw = Position('Left wing')
@@ -196,6 +242,26 @@ players = [
     Player('Vieira', france, { arsenal, man_c, inter, juventus, milan, cannes }, [cm]),
     Player('Xavi', spain, { barcelona }, [cm]),
     Player('David Silva', spain, { valencia, man_c, celta, eibar }, [cm, lm]),
+    Player('Shearer', england, { newcastle, southampton, blackburn }, [st]),
+    Player('Cech', czechia, { chelsea, arsenal, rennais }, [gk]),
+    Player('Yaya', cote_d_ivoire, { man_c, barcelona, monaco, olympiacos }, [cm]),
+    Player('Son', south_korea, { tottenham, leverkusen, hamburg }, [lw, rw, st]),
+    Player('Boban', croatia, { milan, celta, bari }, [cm, lm]),
+    Player('Suker', croatia, { munich_1860, west_ham, arsenal, real_madrid, sevilla }, [st]),
+    Player('Vidic', serbia, { inter, man_u }, [cb]),
+    Player('De Rossi', italy, { roma, boca }, [cm]),
+    Player('Suarez', uruguay, { liverpool, barcelona, ajax, groningen }, [st]),
+    Player('Valderrama', colombia, { colorado, tampa, miami, montpellier, valladolid }, [cm]),
+    Player("Eto'o", cameroon, { sampdoria, everton, chelsea, inter, barcelona, real_madrid, mallorca }, [st, rw]),
+    Player('Kewell', australia, { liverpool, leeds }, [cm, lw]),
+    Player('Juninho Pernambucano', brazil, { ny, lyon }, [cm, rw]),
+    Player('Mihajlovic', serbia, { lazio, inter, roma, sampdoria }, [cb]),
+    Player('Keane', australia, { man_u, celtic, nottingham }, [cm]),
+    Player('Bale', wales, { tottenham, real_madrid, southampton }, [lw, st, rw]),
+    Player('Alaba', austria, { hoffenheim, bayern }, [cm, cb, lb]),
+    Player('Söyüncü', turkey, { leicester, freiburg }, [cb]),
+    Player('Salas', chile, { juventus, lazio, river }, [st]),
+    Player('Maradona', argentina, { napoli, boca, sevilla, barcelona }, [cm])
 ]
 
 team_433 = Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw])
