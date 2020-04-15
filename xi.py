@@ -98,6 +98,7 @@ wales = Nation('Wales')
 austria = Nation('Austria')
 turkey = Nation('Turkey')
 chile = Nation('Chile')
+ukraine = Nation('Ukraine')
 
 malmo = Club('Malmö')
 liverpool = Club('Liverpool')
@@ -184,6 +185,11 @@ hoffenheim = Club('Hoffenheim')
 freiburg = Club('Freiburg')
 river = Club('River Plate')
 napoli = Club('Napoli')
+villarreal = Club('Villarreal')
+genk = Club('Genk')
+metz = Club('Metz')
+metrostars = Club('Metrostars')
+orange_county = Club('Orange County')
 
 st = Position('Striker')
 lw = Position('Left wing')
@@ -220,10 +226,10 @@ players = [
     Player('Henry', france, { ny, barcelona, arsenal, juventus, monaco }, [st, lw], 9),
     Player('Sterling', england, { liverpool, man_c }, [lw, rw, st], 8),
     Player('Ronaldo', brazil, { milan, real_madrid, inter, barcelona, psv }, [st], 9),
-    Player('Mané', senegal, { liverpool, southampton }, [lw, st, rw], 8),
-    Player('Salah', egypt, { liverpool, chelsea, roma, fiorentina }, [lw, st, rw], 8),
+    Player('Mané', senegal, { liverpool, southampton }, [lw, st, rw], 9),
+    Player('Salah', egypt, { liverpool, chelsea, roma, fiorentina }, [lw, st, rw], 9),
     Player('Gerrard', england, { liverpool, la }, [cm], 9),
-    Player('de Bruyne', belgium, { man_c, chelsea, bremen, wolfsburg }, [cm], 9),
+    Player('de Bruyne', belgium, { man_c, chelsea, bremen, wolfsburg, genk }, [cm], 9),
     Player('Messi', argentina, { barcelona }, [st, rw], 10),
     Player('Alexander-Arnold', england, { liverpool }, [rb], 8),
     Player('Robertson', scotland, { liverpool }, [lb], 7),
@@ -236,7 +242,7 @@ players = [
     Player('Aubameyang', gabon, { saint_etienne, arsenal, dortmund, milan, monaco, lille }, [lw, st, rw], 7),
     Player('Lewandowski', poland, { bayern, dortmund }, [st], 8),
     Player('Mahrez', algeria, { leicester, man_c, le_havre }, [rw, rm, cm], 7),
-    Player('Courtois', belgium, { chelsea, real_madrid, atletico_madrid }, [gk], 8),
+    Player('Courtois', belgium, { chelsea, real_madrid, atletico_madrid, genk }, [gk], 8),
     Player('Alisson', brazil, { liverpool, roma }, [gk], 8),
     Player('Haaland', norway, { salzburg, dortmund }, [st], 7),
     Player('Kanté', france, { leicester, chelsea, caen }, [cm], 8),
@@ -262,30 +268,34 @@ players = [
     Player('Alaba', austria, { hoffenheim, bayern }, [cm, cb, lb], 6),
     Player('Söyüncü', turkey, { leicester, freiburg }, [cb], 5),
     Player('Salas', chile, { juventus, lazio, river }, [st], 7),
-    Player('Maradona', argentina, { napoli, boca, sevilla, barcelona }, [cm], 10)
+    Player('Maradona', argentina, { napoli, boca, sevilla, barcelona }, [cm], 10),
+    Player('Bergkamp', netherlands, { inter, arsenal, ajax }, [st], 8),
+    Player('Godin', uruguay, { atletico_madrid, inter, villarreal }, [cb], 8),
+    Player('Koulibaly', senegal, { napoli, genk, metz }, [cb], 8),
+    Player('Shevchenko', ukraine, { milan, chelsea }, [st], 8),
+    Player('Matthäus', germany, { metrostars, bayern, inter, monchengladbach }, [cb, cm], 9),
+    Player('Klinsmann', germany, { orange_county, sampdoria, tottenham, bayern, monaco, inter, stuttgart }, [st], 8),
+    Player('Thuram', france, { barcelona, juventus, parma, monaco }, [cb, rb], 8)
 ]
 
-team_433 = Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw])
+teams = [
+    Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw]),
+    Team(players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
+    Team(players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
+    ]
 
-xis = team_433.find_xis()
-xis.sort(key = lambda xi: sum(player.quality for player in xi))
-
-print('Top 3')
-print()
-for xi in xis[-3:]:
-    print(sum(player.quality for player in xi))
-    
-    for player in xi:
-        print(player)
-
+for team in teams:
     print()
-
-print('Bottom 3')
-print()
-for xi in xis[:3]:
-    print(sum(player.quality for player in xi))
-    
-    for player in xi:
-        print(player)
-    
     print()
+    xis = team.find_xis()
+    xis.sort(key = lambda xi: sum(player.quality for player in xi))
+
+    print('Top 3')
+    print()
+    for xi in xis[-3:]:
+        print(sum(player.quality for player in xi))
+        
+        for player in xi:
+            print(player)
+
+        print()
