@@ -19,3 +19,5 @@ To run: Make sure your system has Python 3 installed. Then open a terminal and t
 
 That's it. By default, it displayes the three best elevens for 4-3-3, 4-4-2 and 3-4-3 formations.
 This is obviously configurable too.
+
+Just beware, the actual runtime of this program can be several minutes, and grows quickly with the number of players.
