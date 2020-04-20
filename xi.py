@@ -181,10 +181,12 @@ class Xi:
         return '\n'.join((self.print_attack(), self.print_midfield(), self.print_defense(), self.print_gk()))
 
 class Team:
-    def __init__(self, players, positions):
+    def __init__(self, formation, players, positions):
+        self.formation = formation
         self.players = players
         self.positions = positions
         self.xis = []
+        self.xi_name_sets = set()
 
     def generate_xis(self):
         players_for_positions = list(map(
@@ -194,7 +196,10 @@ class Team:
 
         def search(n, players, nations, clubs):
             if n == 11:
-                self.xis.append(Xi(self.positions, list(players)))
+                player_names = tuple([player.name for player in players])
+                if player_names not in self.xi_name_sets:
+                    self.xi_name_sets.add(player_names)
+                    self.xis.append(Xi(self.positions, list(players)))
                 return
 
             for player in players_for_positions[n]:
@@ -431,9 +436,9 @@ players = [
 ]
 
 teams = [
-    Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw]),
-    #Team(players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
-    #Team(players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
+    Team('4-3-3', players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw]),
+    Team('4-4-2', players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
+    Team('3-4-3', players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
     ]
 
 for team in teams:
