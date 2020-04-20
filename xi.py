@@ -451,7 +451,7 @@ for team in teams:
 
     print('Top 3 for', team.formation)
     print()
-    for xi in team.xis[-3:]:
+    for xi in team.xis[-1:-4:-1]:
         print('Team strength:', sum(player.quality for player in xi.players))
         print()
         print(xi)
