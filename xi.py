@@ -196,7 +196,7 @@ class Team:
 
         def search(n, players, nations, clubs):
             if n == 11:
-                player_names = tuple([player.name for player in players])
+                player_names = tuple(sorted([player.name for player in players]))
                 if player_names not in self.xi_name_sets:
                     self.xi_name_sets.add(player_names)
                     self.xis.append(Xi(self.positions, list(players)))
