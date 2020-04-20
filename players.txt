@@ -78,4 +78,4 @@ Giggs                   Wales           {Man_U}                                 
 Ferdinand               England         {Man_U,QPR,Leeds,West_Ham,Bournemouth                               [cb]                8
 Terry                   England         {Chelsea,Aston_Villa,Nottingham_Forest                              [cb]                8
 Carvalho                Portugal        {Porto,Real_Madrid,Chelsea,Monaco}                                  [cb]                8
-Iniesta                 Spain           {Barcelona}                                                         [lm, cm, lw]        9
+Iniesta                 Spain           {Barcelona}                                                         [lm,cm,lw]        9
