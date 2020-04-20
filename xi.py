@@ -282,7 +282,10 @@ players = [
     Player('Matthäus', germany, { metrostars, bayern, inter, monchengladbach }, [cb, cm], 9),
     Player('Klinsmann', germany, { orange_county, sampdoria, tottenham, bayern, monaco, inter, stuttgart }, [st], 8),
     Player('Thuram', france, { barcelona, juventus, parma, monaco }, [cb, rb], 8),
-    Player('Drogba', cote_d_ivoire, { chelsea, montreal, phoenix, galatasaray, marseille, guingamp, le_mans }, [st], 8)
+    Player('Drogba', cote_d_ivoire, { chelsea, montreal, phoenix, galatasaray, marseille, guingamp, le_mans }, [st], 8),
+    Player('Figo', portugal, { barcelona, real_madrid, inter, sporting }, [rm, rw, cm], 9),
+    Player('Nedved', czechia, { lazio, juventus, }, [lm, cm, rm], 8),
+    Player('Giggs', wales, { man_u }, [lm, cm, rm], 8),
 ]
 
 teams = [
