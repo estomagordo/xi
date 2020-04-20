@@ -187,6 +187,7 @@ class Team:
         self.positions = positions
         self.xis = []
         self.xi_name_sets = set()
+        self.best_at_5 = 0
 
     def generate_xis(self):
         players_for_positions = list(map(
@@ -201,6 +202,15 @@ class Team:
                     self.xi_name_sets.add(player_names)
                     self.xis.append(Xi(self.positions, list(players)))
                 return
+
+            if n == 5:
+                score = sum(player.quality for player in players)
+                
+                if score > self.best_at_5:
+                    self.best_at_5 = score
+
+                if score + 4 < self.best_at_5:
+                    return
 
             for player in players_for_positions[n]:
                 if player.nationality not in nations and not player.clubs & clubs:
