@@ -211,7 +211,7 @@ def parse_clubs(clubstring):
 def get_players():
     players = []
 
-    with open('players.txt') as f:
+    with open('players.txt', encoding='utf-8') as f:
         for line in f.readlines():
             name, nation, clubs, positions, quality = line.split()
             clubset = parse_clubs(clubs)
