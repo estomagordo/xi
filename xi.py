@@ -198,6 +198,7 @@ class Team:
 
 def parse_positions(positionstring):
     return positionstring[1:-1].split(',')
+    
 
 def parse_clubs(clubstring):
     clubs = set()
