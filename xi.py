@@ -1,6 +1,6 @@
 def center_print(s, width):
     ls = len(s)
-    diff = width - len(s)
+    diff = width - ls
 
     if diff < 0:
         return s[:width]
@@ -353,6 +353,10 @@ phoenix = Club('Phoenix')
 galatasaray = Club('Galatasaray')
 marseille = Club('Marseille')
 le_mans = Club('Le Mans')
+porto = Club('Porto')
+qpr = Club('QPR')
+bournemouth = Club('Bournemouth')
+aston_villa = Club('Aston Villa')
 
 st = Position('Striker')
 lw = Position('Left wing')
@@ -443,6 +447,9 @@ players = [
     Player('Figo', portugal, { barcelona, real_madrid, inter, sporting }, [rm, rw, cm], 9),
     Player('Nedved', czechia, { lazio, juventus, }, [lm, cm, rm], 8),
     Player('Giggs', wales, { man_u }, [lm, cm, rm], 8),
+    Player('Ferdinand', england, { man_u, qpr, leeds, west_ham, bournemouth }, [cb], 8),
+    Player('Terry', england, { chelsea, aston_villa, nottingham }, [cb], 8),
+    Player('Carvalho', portugal, { porto, real_madrid, chelsea, monaco }, [cb], 8),
 ]
 
 teams = [
