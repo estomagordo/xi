@@ -439,6 +439,8 @@ teams = [
     Team('4-3-3', players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw]),
     Team('4-4-2', players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
     Team('3-4-3', players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
+    Team('3-5-2', players, [gk, cb, cb, cb, lm, cm, cm, cm, rm, st, st]),
+    Team('4-5-1', players, [gk, lb, cb, cb, rb, lm, cm, cm, cm, rm, st]),
     ]
 
 for team in teams:
@@ -447,7 +449,7 @@ for team in teams:
     team.generate_xis()
     team.xis.sort(key = lambda xi: sum(player.quality for player in xi.players))
 
-    print('Top 3')
+    print('Top 3 for', team.formation)
     print()
     for xi in team.xis[-3:]:
         print('Team strength:', sum(player.quality for player in xi.players))
