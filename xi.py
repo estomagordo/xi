@@ -1,3 +1,15 @@
+def center_print(s, width):
+    ls = len(s)
+    diff = width - len(s)
+
+    if diff < 0:
+        return s[:width]
+
+    left = diff // 2 + diff % 2
+    right = diff // 2
+
+    return ' ' * left + s + ' ' * right 
+
 class Player:
     def __init__(self, name, nationality, clubs, positions, quality):
         self.name = name
@@ -33,23 +45,156 @@ class Position:
     def __repr__(self):
         return self.name
 
+class Xi:
+    position_width = 18    
+
+    def __init__(self, positions, players):
+        self.positions = positions
+        self.players = players
+
+    def find_position_index(self, position_name, count=1):
+        matches = 0
+
+        for i, position in enumerate(self.positions):
+            if position.name == position_name:
+                matches += 1
+                if matches == count:
+                    return i
+
+        return -1
+
+    def print_attack(self):
+        lw_pos = self.find_position_index('Left wing')
+
+        if lw_pos >= 0:
+            rw_pos = self.find_position_index('Right wing')
+            st_pos = self.find_position_index('Striker')
+
+            return ''.join((
+                center_print(self.players[lw_pos].name, self.position_width),
+                ' ' * self.position_width,
+                center_print(self.players[st_pos].name, self.position_width),
+                ' ' * self.position_width,
+                center_print(self.players[rw_pos].name, self.position_width)
+            ))
+
+        striker_a_pos = self.find_position_index('Striker', 1)
+        striker_b_pos = self.find_position_index('Striker', 2)
+
+        if striker_b_pos >= 0:
+            return ''.join((                
+                ' ' * self.position_width,
+                center_print(self.players[striker_a_pos].name, self.position_width),
+                ' ' * self.position_width,
+                center_print(self.players[striker_b_pos].name, self.position_width),
+                ' ' * self.position_width
+            ))
+
+        return ''.join((                
+            ' ' * self.position_width,
+            ' ' * self.position_width,
+            center_print(self.players[striker_a_pos].name, self.position_width),
+            ' ' * self.position_width,            
+            ' ' * self.position_width
+        ))
+
+            
+    def print_midfield(self):
+        lm_pos = self.find_position_index('Left midfield')
+        rm_pos = self.find_position_index('Right midfield')
+        cm_a_pos = self.find_position_index('Center midfield', 1)
+        cm_b_pos = self.find_position_index('Center midfield', 2)
+        cm_c_pos = self.find_position_index('Center midfield', 3)
+
+        if lm_pos >= 0:
+            if cm_c_pos >= 0:
+                return ''.join((                
+                    center_print(self.players[lm_pos].name, self.position_width),
+                    center_print(self.players[cm_a_pos].name, self.position_width),
+                    center_print(self.players[cm_b_pos].name, self.position_width),
+                    center_print(self.players[cm_c_pos].name, self.position_width),
+                    center_print(self.players[rm_pos].name, self.position_width)
+                ))
+            
+            return ''.join((                
+                center_print(self.players[lm_pos].name, self.position_width),
+                center_print(self.players[cm_a_pos].name, self.position_width),
+                ' ' * self.position_width,
+                center_print(self.players[cm_b_pos].name, self.position_width),
+                center_print(self.players[rm_pos].name, self.position_width)
+            ))
+
+        return ''.join((                
+            ' ' * self.position_width,
+            center_print(self.players[cm_a_pos].name, self.position_width),
+            center_print(self.players[cm_b_pos].name, self.position_width),
+            center_print(self.players[cm_c_pos].name, self.position_width),
+            ' ' * self.position_width
+        ))
+        
+
+    def print_defense(self):
+        lb_pos = self.find_position_index('Left back')
+        rb_pos = self.find_position_index('Right back')
+        cb_a_pos = self.find_position_index('Center back', 1)
+        cb_b_pos = self.find_position_index('Center back', 2)
+        cb_c_pos = self.find_position_index('Center back', 3)
+
+        if lb_pos >= 0:
+            if cb_c_pos >= 0:
+                return ''.join((                
+                    center_print(self.players[lb_pos].name, self.position_width),
+                    center_print(self.players[cb_a_pos].name, self.position_width),
+                    center_print(self.players[cb_b_pos].name, self.position_width),
+                    center_print(self.players[cb_c_pos].name, self.position_width),
+                    center_print(self.players[rb_pos].name, self.position_width)
+                ))
+            
+            return ''.join((                
+                center_print(self.players[lb_pos].name, self.position_width),
+                center_print(self.players[cb_a_pos].name, self.position_width),
+                ' ' * self.position_width,
+                center_print(self.players[cb_b_pos].name, self.position_width),
+                center_print(self.players[rb_pos].name, self.position_width)
+            ))
+
+        return ''.join((                
+            ' ' * self.position_width,
+            center_print(self.players[cb_a_pos].name, self.position_width),
+            center_print(self.players[cb_b_pos].name, self.position_width),
+            center_print(self.players[cb_c_pos].name, self.position_width),
+            ' ' * self.position_width
+        ))
+
+    def print_gk(self):
+        gk_pos = self.find_position_index('Goalkeeper')
+
+        return ''.join((                
+            ' ' * self.position_width,
+            ' ' * self.position_width,
+            center_print(self.players[gk_pos].name, self.position_width),
+            ' ' * self.position_width,
+            ' ' * self.position_width
+        ))
+        
+    def __repr__(self):
+        return '\n'.join((self.print_attack(), self.print_midfield(), self.print_defense(), self.print_gk()))
 
 class Team:
     def __init__(self, players, positions):
         self.players = players
         self.positions = positions
+        self.xis = []
 
-    def find_xis(self):
+    def generate_xis(self):
         players_for_positions = list(map(
             lambda position: [player for player in self.players if position in player.positions],
             self.positions
-            ))
-
-        xis = []
+            ))        
 
         def search(n, players, nations, clubs):
             if n == 11:
-                xis.append(players)
+                self.xis.append(Xi(self.positions, list(players)))
                 return
 
             for player in players_for_positions[n]:
@@ -57,9 +202,6 @@ class Team:
                     search( n +1, list(players) + [player], nations | { player.nationality }, clubs | player.clubs)
 
         search(0, [], set(), set())
-
-        return xis
-
 
 sweden = Nation('Sweden')
 denmark = Nation('Denmark')
@@ -290,22 +432,20 @@ players = [
 
 teams = [
     Team(players, [gk, lb, cb, cb, rb, cm, cm, cm, lw, st, rw]),
-    Team(players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
-    Team(players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
+    #Team(players, [gk, lb, cb, cb, rb, lm, cm, cm, rm, st, st]),
+    #Team(players, [gk, cb, cb, cb, lm, cm, cm, rm, lw, st, rw]),
     ]
 
 for team in teams:
     print()
     print()
-    xis = team.find_xis()
-    xis.sort(key = lambda xi: sum(player.quality for player in xi))
+    team.generate_xis()
+    team.xis.sort(key = lambda xi: sum(player.quality for player in xi.players))
 
     print('Top 3')
     print()
-    for xi in xis[-3:]:
-        print(sum(player.quality for player in xi))
-        
-        for player in xi:
-            print(player)
-
+    for xi in team.xis[-3:]:
+        print('Team strength:', sum(player.quality for player in xi.players))
+        print()
+        print(xi)
         print()
